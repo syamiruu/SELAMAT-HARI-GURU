@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KUMPULAN SOALAN KIMIA SPM</title>
+
+<style>
+
+/* 🌙 prevent dark mode override */
+:root{
+    color-scheme: light only;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#ffd6e8,#d6e4ff,#fff4c2);
+
+    forced-color-adjust:none;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+}
+
+/* INTRO */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:linear-gradient(135deg,#ffe5ec,#e0ecff,#fff7d6);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+}
+
+/* ENVELOPE */
+.envelope{
+    width:220px;
+    height:140px;
+    background:#fff;
+    position:relative;
+    border-radius:8px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    transition:0.4s;
+}
+
+.envelope:hover{
+    transform:scale(1.05);
+}
+
+.envelope::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:110px solid transparent;
+    border-right:110px solid transparent;
+    border-top:75px solid #ffb6c1;
+}
+
+.envelope-text{
+    margin-top:30px;
+    color:#666;
+    font-size:22px;
+}
+
+/* WEBSITE */
+#website{
+    display:none;
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:70px 20px;
+    color:#5b5b7a;
+}
+
+.hero h1{
+    font-size:clamp(40px,7vw,65px);
+}
+
+.hero p{
+    font-size:20px;
+    margin:12px 0;
+    color:#6b6b8d;
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.6;
+}
+
+/* SECTION TITLE */
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin:40px 0 20px;
+    color:#5b5b7a;
+    letter-spacing:2px;
+}
+
+/* NOTES */
+.notes-board{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+.note{
+    padding:20px;
+    min-height:160px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    font-size:18px;
+    color:#555;
+    transition:0.3s;
+}
+
+.note:hover{
+    transform:translateY(-8px) rotate(1deg);
+}
+
+/* PASTEL */
+.yellow{ background:#fff3b0; }
+.pink{ background:#ffd6e7; }
+.blue{ background:#d6e8ff; }
+.green{ background:#d7f7d0; }
+.orange{ background:#ffe0c1; }
+.purple{ background:#ead8ff; }
+.mint{ background:#c8f7dc; }
+.peach{ background:#ffd8c2; }
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.gallery img:hover{
+    transform:scale(1.03);
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.popup img,
+.popup video{
+    max-width:90%;
+    max-height:80%;
+    border-radius:15px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
+
+/* VIDEO CARD */
+.video-card{
+    position:relative;
+    cursor:pointer;
+}
+
+.video-thumb{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.play-button{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:60px;
+    color:white;
+    background:rgba(0,0,0,0.4);
+    width:80px;
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+}
+
+/* HEARTS */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:20px;
+    color:pink;
+    animation:floatUp 6s linear infinite;
+    z-index:1;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0);
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+/* CONFETTI */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:0;
+    animation:fall 2s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.gap-below{
+    margin-bottom: 90px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop preload="auto">
+    <source src="https://files.catbox.moe/4xajro.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SOUND EFFECTS -->
+<audio id="openSound" src="https://files.catbox.moe/6wf1e1.mp3" preload="auto"></audio>
+<audio id="popSound" src="https://files.catbox.moe/5nyc7w.mp3" preload="auto"></audio>
+
+<!-- INTRO -->
+<div id="intro">
+    <div class="envelope" onclick="openWebsite()"></div>
+    <div class="envelope-text">Cikgu Khuzaimah</div>
+</div>
+
+<!-- WEBSITE -->
+<div id="website">
+
+    <div class="hero">
+
+        <h1>SELAMAT HARI GURU!</h1>
+
+        <p>
+            “Teaching is the one profession that creates all other professions.” 💖
+        </p>
+
+        <p>
+            Terima kasih kerana telah mengajari kami cikgu dan mencipta memori indah bersama kelas 5 Lambda.
+        </p>
+
+        <p style="margin-bottom:90px;">
+            Cikgu sentiasa menjadi inspirasi kami untuk terus berjaya dalam SPM 🌟
+        </p>
+
+        <p>
+            Selamat hari guru cikgu k, me love u n i olwaish do. terima kasih cikgu sbb banyak bersabar dengan saya, saya sayang cikgu 💞 - Zara 💐
+        </p>
+           
+        <p>
+            Selamat Hari Guru, Cikgu Khuzaimah! Terima kasih atas segala ilmu, kesabaran, dan tunjuk ajar yang cikgu berikan selama ini. Semoga Cikgu sentiasa dirahmati dan diberkati-Nya. Saya akan cuba sebaik mungkin untuk mendapat A+ dalam kimia. Terima kasih cikgu! - Amri 🤓
+        </p>
+ 
+        <p>
+           Selamat Hari Guru, Cikgu Khuzaimah, saya reka website ni untuk cikgu, terima kasih kerana telah mengajari kitorang selama ni. - Syamirul 💌      
+        </p>
+
+    </div>
+
+    <!-- NOTEBOARD -->
+    <div class="section-title">
+        KATA-KATA DARI ANAK MURID
+    </div>
+
+    <div class="notes-board">
+
+        <div class="note yellow">Selamat Hari Guru, Cikgu Khuzaimah Tersayang. Semoga cikgu sihat selalu dan sentiasa dimurahkan rezeki. Maafkan saya kerana selama ini saya selalu buat cikgu marah. - Azhar 💛</div>
+        <div class="note pink">Happy Teacher's Day, thank you for teaching us Chemistry and being patient with me and my classmates. Your education style really makes me enjoy Chemistry class from Form 4 until Form 5. I am deeply sorry for any mistakes I have done and I will do my best to get A+ for Chemistry in SPM. Thank you for being a good mentor and always inspiring 5 Lambda. - Daniall 💞</div>
+        <div class="note blue">Selamat Hari Guru, Cikgu Khuzaimah. Semoga hidup cikgu diberkati selalu, dimurahkan rezeki serta mendapat pahala secara berterusan kerana memberi ilmu kepada saya. Saya akan berusaha mendapatkan A+ untuk Kimia dalam SPM insyaallah. - Danish 💙</div>
+        <div class="note green">Selamat Hari Guru Cikgu Khuzaimah yang comel dan cantik!!!! Terima kasih cikgu sebab sentiasa bersabar mengajar kami. Love you Cikgu Khuzaimah 💓💓💓💝 - Rasyiqah 🌿</div>
+        <div class="note orange">SELAMAT HARI GURU, Cikgu Khuzaimah. Terima kasih cikgu sebab ajar saya kimia dengan math (walaupun sekejap). Insyaallah cikgu saya janji dapat A untuk trial spm dan spm real. Abang saya pun nak berterima kasih sekali dekat cikgu. Semoga cikgu sentiasa diberikan kesihatan yang baikk dan dipermudahkan segala urusan, terima kasih cikgu. - Darwish ✨</div>
+        <div class="note purple">hi Cikgu K ! terima kasih sebab tahan dengan perangai kitaorg since day 1 kitaorg kat Lambda (esp : mayang, camelia dan insyirah). Happy Teacher’s Day Cikgu Khuzaimah !! - Camelia 🎉</div>
+        <div class="note mint">Happy teacher's day cg 🔥Thank you for all the efforts and hard work yg cikgu curahkan untuk ajar ktrg. Semoga segala jasa cikgu Allah balas dengan kebaikan berlipat ganda dan semoga cg dimurahkan rezeki dan diberikan kesihatan sihat selalu. Maafkan ktrg klu ada terkasar bahasa atau kurang ajar dgn cg 🤍✨ - Raihana ☁️</div>
+        <div class="note peach">selamat hari guru cikgu khuzaimah. terima kasih ajar kami tanpa jemu. semoga pahala cikgu sentiasa mengalir sepanjang cikgu mengajar. doakan kami 5 lambda mendapat keputusan yang cemerlang dan bejaya di dunia dan di akhirat. i love you cikguu. - Alin 💖</div>
+
+    </div>
+
+    <!-- MEMORIES -->
+    <div class="section-title">
+        MEMORIES OF LAMBDA
+    </div>
+
+    <!-- 12 PHOTOS -->
+    <div class="gallery">
+
+        <img src="https://i.postimg.cc/wvQ2G2bp/photo-2025-04-18-20-57-58.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/XJkLzLDZ/photo-2025-04-18-20-58-08.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/1trBjBYf/photo-2025-04-18-20-58-29.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/B6BpVpwn/photo-2025-04-18-20-58-39.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/DZP6M6YS/photo-2025-04-18-20-58-40.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/V6WgVgHC/photo-2025-04-18-20-58-41.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/qRxw5wZK/photo-2025-04-18-20-58-57.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/hj1s5s3x/photo-2025-04-18-20-58-58.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/BbZp9Fdn/photo-2025-04-18-20-59-00.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/8ck4QvqC/Photo1.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/BbZp9Fd6/Photo2.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/4y4Pkcr7/Photo3.jpg" onclick="openImage(this.src)">
+        <img src="https://i.postimg.cc/D0f6kGtb/Photo4.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/d2chua.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/52psw8.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/ocg5fo.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/v76wcx.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/homv7z.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/r2tadn.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/8dxole.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/c7cx9l.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/gxzut7.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/i7mnm4.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/8c883e.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/cqux9j.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/w8jix3.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/1ijau6.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/bq8kje.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/d6u6kf.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/7kkgnj.jpg" onclick="openImage(this.src)">
+        <img src="https://files.catbox.moe/31jzac.jpg" onclick="openImage(this.src)">
+    
+    </div>
+
+    <!-- 6 VIDEOS -->
+    <div class="gallery">
+
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/xy819i.mp4')">
+            <img src="https://files.catbox.moe/uhdwqp.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/ye6ywe.mp4')">
+            <img src="https://files.catbox.moe/2w2kar.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/x3gmxj.mp4')">
+            <img src="https://files.catbox.moe/x1rv1d.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/vvqmkh.mp4')">
+            <img src="https://files.catbox.moe/axqacd.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/vg5xmh.mp4')">
+            <img src="https://files.catbox.moe/vd8zfz.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/xdn3ki.mp4')">
+            <img src="https://files.catbox.moe/7svqvm.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/gccgp7.mp4')">
+            <img src="https://files.catbox.moe/mjmwah.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('https://files.catbox.moe/aq9in9.mp4')">
+            <img src="https://files.catbox.moe/a7bmqf.png" class="video-thumb">
+            <div class="play-button">▶</div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- IMAGE POPUP -->
+<div class="popup" id="popup">
+
+    <span class="close" onclick="closePopup()">
+        &times;
+    </span>
+
+    <img id="popup-img">
+
+</div>
+
+<!-- VIDEO POPUP -->
+<div class="popup" id="videoPopup">
+
+    <span class="close" onclick="closeVideo()">
+        &times;
+    </span>
+
+    <video id="popupVideo" controls></video>
+
+</div>
+
+<script>
+
+function openWebsite(){
+
+    document.getElementById("openSound").currentTime = 0;
+    document.getElementById("openSound").play();
+
+    document.getElementById("intro").style.display="none";
+    document.getElementById("website").style.display="block";
+
+    startConfetti();
+    startHearts();
+
+    let music=document.getElementById("music");
+
+    music.volume=0;
+
+    music.play().catch(()=>{});
+
+    let v=0;
+
+    let fade=setInterval(()=>{
+
+        if(v<0.25){
+
+            v+=0.01;
+            music.volume=v;
+
+        } else {
+
+            clearInterval(fade);
+
+        }
+
+    },120);
+}
+
+/* CONFETTI */
+function startConfetti(){
+
+    for(let i=0;i<60;i++){
+
+        let c=document.createElement("div");
+
+        c.className="confetti";
+
+        c.style.left=Math.random()*100+"vw";
+
+        c.style.backgroundColor=
+        `hsl(${Math.random()*360},70%,70%)`;
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>c.remove(),3000);
+    }
+}
+
+/* HEARTS */
+function startHearts(){
+
+    setInterval(()=>{
+
+        let h=document.createElement("div");
+
+        h.className="heart";
+
+        h.innerHTML="💖";
+
+        h.style.left=Math.random()*100+"vw";
+
+        h.style.fontSize=
+        (Math.random()*20+10)+"px";
+
+        document.body.appendChild(h);
+
+        setTimeout(()=>h.remove(),6000);
+
+    },300);
+}
+
+/* IMAGE */
+function openImage(src){
+
+    document.getElementById("popSound").currentTime = 0;
+    document.getElementById("popSound").play();
+
+    document.getElementById("popup").style.display="flex";
+
+    document.getElementById("popup-img").src=src;
+}
+
+function closePopup(){
+
+    document.getElementById("popup").style.display="none";
+}
+
+/* VIDEO */
+function openVideo(videoSrc){
+
+    document.getElementById("popSound").currentTime = 0;
+    document.getElementById("popSound").play();
+
+    let popup=document.getElementById("videoPopup");
+
+    let video=document.getElementById("popupVideo");
+
+    popup.style.display="flex";
+
+    video.src=videoSrc;
+
+    video.play();
+}
+
+function closeVideo(){
+
+    let v=document.getElementById("popupVideo");
+
+    v.pause();
+
+    v.currentTime=0;
+
+    document.getElementById("videoPopup").style.display="none";
+}
+
+
+</script>
+
+</body>
+</html>
